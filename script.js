@@ -5,27 +5,66 @@
 // Bonus
 // Far comparire gli indirizzi email solamente quando sono stati tutti generati.
 
+// var generateEmail = new Vue({
+//     el:"#app",
+//     data: {
+//         emails : []
+//     },
+//     methods: {
+//         getAxios : function () {
+//             for (let i = 0; i < 10; i++) {
+//                 axios
+//                     .get("https://flynn.boolean.careers/exercises/api/random/mail")
+//                     .then((response) => {   
+//                         this.emails.push(response.data.response)
+//                     })
+//                     .catch((error) => {
+//                         console.log(error);
+//                     }); 
+//             }
+//         }
+//     },
+
+//     created() {
+//         this.getAxios()
+//     },
+// })
+
+
+
+
+
+
+
+
+
+
+
+
 var generateEmail = new Vue({
     el:"#app",
     data: {
-        emails : []
+       emails:[]
     },
     methods: {
-        getAxios : function () {
-            for (let i = 0; i < 10; i++) {
-                axios
-                    .get("https://flynn.boolean.careers/exercises/api/random/mail")
-                    .then((response) => {   
-                        this.emails.push(response.data.response)
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    }); 
-            }
-        }
+       createEmails: function () {
+           for (let i = 0; i < 10; i++) {
+               axios
+               .get("https://flynn.boolean.careers/exercises/api/random/mail")
+               .then(res => {
+                  this.emails.push(res.data.response)
+                  console.log(res);
+               })
+               .catch(err => {
+                   console.error(err); 
+               })
+
+               
+           }
+       }
     },
 
     created() {
-        this.getAxios()
+       this.createEmails()
     },
 })
