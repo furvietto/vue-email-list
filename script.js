@@ -5,31 +5,27 @@
 // Bonus
 // Far comparire gli indirizzi email solamente quando sono stati tutti generati.
 
-var app = new Vue({
+var generateEmail = new Vue({
     el:"#app",
     data: {
-        emails : ["ciao","tumadre","hello"]
+        emails : []
     },
     methods: {
         getAxios : function () {
             for (let i = 0; i < 10; i++) {
-                
-                
+                axios
+                    .get("https://flynn.boolean.careers/exercises/api/random/mail")
+                    .then((response) => {   
+                        this.emails.push(response.data.response)
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    }); 
             }
-            axios
-            .get("https://flynn.boolean.careers/exercises/api/random/int")
-            .then((response) => {
-                console.log(response.data.response);
-                this.numPlayer = response.data.response;
-            })
-            .catch((error) => {
-                console.log(error);
-            }); 
         }
     },
 
     created() {
-        
-
-        },
+        this.getAxios()
+    },
 })
